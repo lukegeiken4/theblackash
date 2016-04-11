@@ -15,6 +15,10 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
+app.get('/', function (req, res) {
+	res.send(JSON.stringify({"result": "Welcome to The Black Ash server"}));
+});
+
 app.post('/', function (req, res) {
 	console.log(req.body);
 	var mes = req.body.message;
