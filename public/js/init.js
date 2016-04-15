@@ -20,7 +20,7 @@
 	  	console.log(JSON.stringify(json_data));
 	  	$.ajax({
 		  type: "POST",
-		  url: "https://pacific-depths-29271.herokuapp.com/",
+		  url: "https://pacific-depths-29271.herokuapp.com",
 		  dataType: 'json',
 		  data: json_data,
 		  success: function(msg){
