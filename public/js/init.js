@@ -1,6 +1,6 @@
 (function($){
   $(function(){
-
+  	$("#loading-bar").css("display", "none");
     $('.button-collapse').sideNav();
     $('.parallax').parallax();
 	$('.tooltipped').tooltip({delay: 50});
@@ -12,8 +12,11 @@
 	  var name = $('#name').val();
 	  var phone = $('#phone').val();
 
+	  $("#loading-bar").css("display", "block");
+
 	  if(date == "" || date == null || time == "" || time == null || name == "" || name == null || phone == "" || phone == null) {
 	  	Materialize.toast('Reservation request was not filled out completely, complete it before sending it', 4000);
+	  	$("#loading-bar").css("display", "none");
 	  } else {
 	  	var message = "Reservation Request for " + name + ". \nOn " + date + " @ " + time + ".\nRespond to " + phone;
 	  	var json_data = {message: message};
@@ -29,11 +32,21 @@
 		  	} else {
 		  		Materialize.toast('Request was sent, look for text message for 402-214-8577 for response. ', 4000);
 		  	}
+		  	$("#loading-bar").css("display", "none");
 	  		$('#reservation-modal').closeModal();
+	  		$('#date').val('');
+			$('#time').val('');
+			$('#name').val('');
+			$('#phone').val('');
 		  },
 		  error: function(XMLHttpRequest, textStatus, errorThrown) {
 		  		Materialize.toast('Error sending message. You will need to call to setup reservation', 4000);
+		  		$("#loading-bar").css("display", "none");
 	  			$('#reservation-modal').closeModal();
+	  			$('#date').val('');
+				$('#time').val('');
+				$('#name').val('');
+				$('#phone').val('');
 		  }
 		});
 	  }
